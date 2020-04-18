@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/heart.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0.8, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.8, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
 
 [node name="World" type="Node2D"]
 
@@ -19,3 +32,41 @@ color = Color( 1, 0.8, 0, 1 )
 position = Vector2( 1104, 112 )
 color = Color( 0, 0.8, 1, 1 )
 player = "p2"
+
+[node name="LoveBar1" type="ProgressBar" parent="."]
+margin_left = 32.0
+margin_top = 704.0
+margin_right = 702.0
+margin_bottom = 736.0
+rect_rotation = -90.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 3 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoveBar2" type="ProgressBar" parent="."]
+margin_left = 1216.0
+margin_top = 704.0
+margin_right = 1886.0
+margin_bottom = 736.0
+rect_rotation = -90.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 4 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart1" type="Sprite" parent="."]
+modulate = Color( 1, 0.8, 0, 1 )
+position = Vector2( 48, 752 )
+texture = ExtResource( 3 )
+
+[node name="Heart2" type="Sprite" parent="."]
+modulate = Color( 0, 0.8, 1, 1 )
+position = Vector2( 1232, 752 )
+texture = ExtResource( 3 )

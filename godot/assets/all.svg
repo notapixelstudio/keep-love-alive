@@ -26,8 +26,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="139.3218"
-     inkscape:cy="132.50417"
+     inkscape:cx="126.8218"
+     inkscape:cy="112.50417"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -87,5 +87,12 @@
        sodipodi:nodetypes="cccc"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
+    <path
+       inkscape:export-ydpi="96.183853"
+       inkscape:export-xdpi="96.183853"
+       id="path1147"
+       d="m 20.754366,265.26593 c 0,5.78796 -8.054366,11.64593 -8.054366,11.64593 0,0 -8.0543669,-5.85797 -8.0543669,-11.64593 0,-3.2813 2.5368072,-4.49173 3.870759,-4.49173 2.7889579,0 4.1836079,2.35912 4.1836079,2.35912 0,0 1.394649,-2.35948 4.183601,-2.35948 1.333958,2.4e-4 3.870765,1.21043 3.870765,4.49209 z"
+       inkscape:connector-curvature="0"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.99999988;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>
