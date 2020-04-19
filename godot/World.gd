@@ -1,11 +1,13 @@
 extends Node2D
 
 onready var todogroups = get_tree().get_nodes_in_group('todogroups')
+onready var gameover_screen = $CanvasLayer/GameOver
 var todogroups_chances = []
 var todogroups_chances_max
 
 func _ready():
 	randomize()
+	global.new_game()
 	
 	for todogroup in todogroups:
 		todogroup.connect('checked', self, '_on_Todo_checked')
@@ -38,6 +40,8 @@ func _on_Timer_timeout():
 	
 func game_over():
 	$Timer.stop()
+	gameover_screen.start()
+	
 	
 func update_bars():
 	for p in ['p1','p2']:
