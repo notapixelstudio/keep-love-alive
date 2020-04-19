@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export var radius = 200
+export var radius = 150
 export var player = 'p1' setget set_player
 
 func set_player(v):

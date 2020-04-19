@@ -62,4 +62,5 @@ func spawn_todo(player):
 	
 func _on_SpawnTimer_timeout():
 	spawn_todo(['p1','p2'][randi() % 2])
-	
+	$SpawnTimer.wait_time *= 0.9
+	$SpawnTimer.wait_time = max($SpawnTimer.wait_time, 3)

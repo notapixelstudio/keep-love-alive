@@ -1,6 +1,6 @@
 extends Area2D
 
-export var value = 1
+export var value = 4
 export var player = 'p1'
 export var active = false setget set_active
 export var couple_chance = 0.2
