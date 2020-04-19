@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Options2D.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -24,16 +28,24 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
 
 [node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -193.5
-margin_top = -270.5
-margin_right = 193.5
-margin_bottom = -193.5
+anchor_right = 1.0
+margin_top = 88.0
+margin_bottom = 165.0
 custom_fonts/font = SubResource( 1 )
-text = "LOVE HURTS"
+text = "KEEP THE LOVE ALIVE*"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 736.0
+margin_bottom = 765.0
+custom_fonts/font = SubResource( 3 )
+text = "*love and happiness not included, and actually not quantifiable"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
