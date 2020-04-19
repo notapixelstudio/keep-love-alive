@@ -25,4 +25,3 @@ func _ready():
 	$Polygon2D.polygon = PoolVector2Array(points)
 	points.append(points[0])
 	$Line2D.points = PoolVector2Array(points)
-	

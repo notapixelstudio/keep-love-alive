@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Character.tscn" type="PackedScene" id=2]
@@ -7,9 +7,20 @@
 [ext_resource path="res://World.gd" type="Script" id=5]
 [ext_resource path="res://TodoGroup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GameOver.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/img/SkyLine.png" type="Texture" id=8]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="SkyLine" type="TextureRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 810.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

@@ -19,6 +19,8 @@ func _on_Todo_body_entered(body):
 		emit_signal('checked', self)
 		set_active(false)
 		
-func activate():
+func activate(time_passed= 20):
 	set_active(true)
+	yield(get_tree().create_timer(time_passed), "timeout")
+	set_active(false)
 	

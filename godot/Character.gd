@@ -8,14 +8,18 @@ export var jump_speed = 600
 export var gravity = 1400
 
 var velocity = Vector2()
+onready var lover = player
 
 func _ready():
 	$Sprite.modulate = global.players[player].color
 	if player == 'p1':
+		lover = 'p2'
 		$Circle.player = 'p2'
 	else:
+		lover = 'p1'
 		$Circle.player = 'p1'
-
+	$Light2D.color = global.players[lover].color
+	
 func _process(delta):
 	var dir_x = int(Input.is_action_pressed(player+'_right'))-int(Input.is_action_pressed(player+'_left'))
 	velocity.x = speed*dir_x
@@ -38,6 +42,48 @@ func _process(delta):
 func is_cherised():
 	for area in $CheckCherised.get_overlapping_areas():
 		if area != $Circle and area.is_in_group('cherish'):
-			return true
+			return aim(area.get_parent())
 	return false
+
+var vis_color = Color(.867, .91, .247, 0.1)
+var hit_pos = []
+var laser_color = Color(1.0, .329, .298)
+var radius = 150
+
+"""
+# in order to raycast
+func _physics_process(delta):
+	update()
+"""
+
+func aim(lover = null):
+	hit_pos = []
+	var space_state = get_world_2d().direct_space_state
+
+	var target = self if not lover else lover
+	var target_extents = target.get_node('CollisionShape2D').shape.extents - Vector2(5, 5)
+	
+	var nw = target.position - target_extents
+	var se = target.position + target_extents
+	var ne = target.position + Vector2(target_extents.x, -target_extents.y)
+	var sw = target.position + Vector2(-target_extents.x, target_extents.y)
+	for pos in [target.position]:
+		
+		var result = space_state.intersect_ray(position,
+				pos, [self], self.collision_mask)
+		if result:
+			hit_pos.append(result.position)
+			if result.collider.name == lover.name:
+				return true
+			else:
+				return false
+			
+			
+
+func _draw():
+	
+	#draw_circle(Vector2(), radius, vis_color)
+	for hit in hit_pos:
+		draw_circle((hit - position).rotated(-rotation), 5, laser_color)
+		draw_line(Vector2(), (hit - position).rotated(-rotation), laser_color)
 	
