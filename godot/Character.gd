@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-export var color = Color(1,1,1,1) setget set_color
+class_name Character
+
 export var player = 'p1'
 export var speed = 400
 export var jump_speed = 600
@@ -8,9 +9,12 @@ export var gravity = 1400
 
 var velocity = Vector2()
 
-func set_color(v):
-	color = v
-	$Sprite.modulate = color
+func _ready():
+	$Sprite.modulate = global.players[player].color
+	if player == 'p1':
+		$Circle.player = 'p2'
+	else:
+		$Circle.player = 'p1'
 
 func _process(delta):
 	var dir_x = int(Input.is_action_pressed(player+'_right'))-int(Input.is_action_pressed(player+'_left'))
@@ -30,3 +34,10 @@ func _process(delta):
 			velocity.y += 2*gravity*delta
 			
 	velocity = move_and_slide(velocity, Vector2(0,-1))
+
+func is_cherised():
+	for area in $CheckCherised.get_overlapping_areas():
+		if area != $Circle and area.is_in_group('cherish'):
+			return true
+	return false
+	
