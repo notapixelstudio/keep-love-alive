@@ -7,11 +7,11 @@
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -41,7 +41,7 @@ uppercase = true
 anchor_right = 1.0
 margin_top = 736.0
 margin_bottom = 765.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "*love and happiness not included, and actually not quantifiable"
 align = 1
 valign = 1
@@ -68,28 +68,28 @@ __meta__ = {
 [node name="Retry" type="Button" parent="Options2D/Options"]
 margin_right = 260.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "START"
 
 [node name="Retry2" type="Button" parent="Options2D/Options"]
 margin_top = 49.0
 margin_right = 260.0
 margin_bottom = 94.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "OPTIONS"
 
 [node name="Retry3" type="Button" parent="Options2D/Options"]
 margin_top = 98.0
 margin_right = 260.0
 margin_bottom = 143.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "CREDITS"
 
 [node name="Retry4" type="Button" parent="Options2D/Options"]
 margin_top = 147.0
 margin_right = 260.0
 margin_bottom = 192.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "QUIT"
 
 [node name="Second" type="Node2D" parent="Options2D"]
@@ -98,7 +98,7 @@ visible = false
 [node name="Basic" type="Button" parent="Options2D/Second"]
 margin_right = 260.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "2 LOVEBIRDS"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -108,7 +108,7 @@ __meta__ = {
 margin_top = 49.0
 margin_right = 260.0
 margin_bottom = 94.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 disabled = true
 text = "AI LOVE"
 
@@ -126,7 +126,7 @@ __meta__ = {
 margin_top = 98.0
 margin_right = 262.0
 margin_bottom = 143.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 disabled = true
 text = "3+ POLY"
 
