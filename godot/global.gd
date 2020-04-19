@@ -1,11 +1,12 @@
 extends Node
 
-var DEFAULT_PLAYERS = {
+const DEFAULT_PLAYERS = {
 	'p1': {'life': 100, 'love': 50, 'color': Color('ffcc00')},
 	'p2': {'life': 100, 'love': 50, 'color': Color('00ccff')}
 }
 
-onready var players = DEFAULT_PLAYERS
+onready var players = DEFAULT_PLAYERS.duplicate(true)
 
 func new_game():
-	players = DEFAULT_PLAYERS
+	print(players)
+	players = DEFAULT_PLAYERS.duplicate(true)

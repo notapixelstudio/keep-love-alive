@@ -35,6 +35,9 @@ margin_right = 193.5
 margin_bottom = -193.5
 custom_fonts/font = SubResource( 1 )
 text = "LOVE HURTS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -57,9 +60,11 @@ margin_bottom = 45.0
 custom_fonts/font = SubResource( 2 )
 text = "TRY AGAIN"
 
-[node name="Retry2" type="Button" parent="VBoxContainer"]
+[node name="BackMenu" type="Button" parent="VBoxContainer"]
 margin_top = 49.0
 margin_right = 251.0
 margin_bottom = 94.0
 custom_fonts/font = SubResource( 2 )
 text = "BACK TO MENU"
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackMenu" to="." method="_on_BackMenu_pressed"]
