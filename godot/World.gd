@@ -5,6 +5,10 @@ onready var gameover_screen = $CanvasLayer/GameOver
 var todogroups_chances = []
 var todogroups_chances_max
 
+var time: float = 0.0
+onready var timer_label = $CanvasLayer/TimerLabel
+var timeformat = "{min}:{sec}"
+
 func _ready():
 	randomize()
 	global.new_game()
@@ -42,7 +46,6 @@ func game_over():
 	$Timer.stop()
 	gameover_screen.start()
 	
-	
 func update_bars():
 	for p in ['p1','p2']:
 		find_node('Bar_'+p).update()
@@ -68,3 +71,18 @@ func _on_SpawnTimer_timeout():
 	spawn_todo(['p1','p2'][randi() % 2])
 	$SpawnTimer.wait_time *= 0.9
 	$SpawnTimer.wait_time = max($SpawnTimer.wait_time, 3)
+
+func _process(delta):
+	time += delta
+	timer_label.text = sec_to_min(time)
+	
+func sec_to_min(seconds: float) -> String:
+	var m = int(floor(seconds/60))
+	# var s = int(floor(seconds))%60
+	var s = stepify(seconds,0.1)
+	var ss: String = "0"+str(s) if s < 10 else str(s)
+	if ss.find(".") < 0:
+		ss = ss+".0"
+	
+	return timeformat.format({"min": m, "sec": ss})
+	

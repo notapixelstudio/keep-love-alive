@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Character.tscn" type="PackedScene" id=2]
@@ -13,6 +13,11 @@
 [ext_resource path="res://assets/img/buildings/yellow_office.png" type="Texture" id=11]
 [ext_resource path="res://assets/img/buildings/blue_office.png" type="Texture" id=12]
 [ext_resource path="res://assets/img/buildings/disco.png" type="Texture" id=13]
+[ext_resource path="res://assets/fonts/digital-dream/DIGITALDREAMFAT.ttf" type="DynamicFontData" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 14 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -84,6 +89,17 @@ player = "p2"
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 1 )
+text = "0:00.00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TodoContainer" type="Node" parent="."]
 
