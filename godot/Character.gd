@@ -13,6 +13,8 @@ onready var jump_sound = $audiojump
 onready var jump_down = $audiodown
 var velocity = Vector2()
 
+var was_on_floor = true
+
 
 func _ready():
 	$Sprite.modulate = global.players[player].color
@@ -80,7 +82,15 @@ func _process(delta):
 	var dir_x = int(Input.is_action_pressed(player+'_right'))-int(Input.is_action_pressed(player+'_left'))
 	velocity.x = speed*dir_x
 	
+	if velocity.y != 0 and was_on_floor:
+		was_on_floor = false
+		$Sprite/AnimationPlayer.play('jump')
+		
 	if is_on_floor():
+		if not was_on_floor:
+			was_on_floor = true
+			$Sprite/AnimationPlayer.play('squash')
+		
 		if Input.is_action_pressed(player+'_jump'):
 			if not Input.is_action_pressed(player+'_down'):
 				jump_sound.play()
