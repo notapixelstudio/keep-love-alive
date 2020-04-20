@@ -6,8 +6,13 @@ const DEFAULT_PLAYERS = {
 }
 
 onready var players = DEFAULT_PLAYERS.duplicate(true)
+onready var audio = AudioStreamPlayer.new()
 
 func _ready():
+	
+	audio.stream = load("res://assets/bgm/362814__setuniman__heartbroken-1n99.ogg")
+	add_child(audio)
+	audio.play()
 	SilentWolf.configure({
 		"api_key": "nhEiDdEK5E8PAowwDabV18piLmLK7oIgqOXiFn21",
 		"game_id": "keep-love-alive",
@@ -19,7 +24,10 @@ func _ready():
 		"open_scene_on_close": "res://MainScreen.tscn"
 	})
 
+
 func new_game():
+	audio.stream = load("res://assets/bgm/403968__setuniman__childhood-1p63.wav")
+	audio.play()
 	print(players)
 	players = DEFAULT_PLAYERS.duplicate(true)
 

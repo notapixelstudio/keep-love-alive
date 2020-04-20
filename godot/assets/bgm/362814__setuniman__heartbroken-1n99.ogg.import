@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/362814__setuniman__heartbroken-1n99.ogg-b2f30c2de023db81d42b16a9f201f596.oggstr"
+
+[deps]
+
+source_file="res://assets/bgm/362814__setuniman__heartbroken-1n99.ogg"
+dest_files=[ "res://.import/362814__setuniman__heartbroken-1n99.ogg-b2f30c2de023db81d42b16a9f201f596.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

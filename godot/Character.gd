@@ -7,9 +7,12 @@ export var speed = 400
 export var jump_speed = 600
 export var gravity = 1400
 export var paused = false
-
-var velocity = Vector2()
 export var cpu : bool = false
+
+onready var jump_sound = $audiojump
+onready var jump_down = $audiodown
+var velocity = Vector2()
+
 
 func _ready():
 	$Sprite.modulate = global.players[player].color
@@ -51,11 +54,12 @@ func _process(delta):
 			if jump_time<0:
 				velocity.y = -jump_speed*1.6
 				jump_time = jump_wait_time + rand_range(1.2, 2.3)
+				jump_sound.play()
 			else:
 				var tile_pos = get_parent().get_node("SolidTiles").world_to_map(position)
 				var tile_id = get_parent().get_node("SolidTiles").get_cellv(Vector2(tile_pos.x, tile_pos.y+1))
 				if tile_id == 1:
-					
+					jump_down.play()
 					position.y += 2
 				
 				
@@ -73,8 +77,10 @@ func _process(delta):
 	if is_on_floor():
 		if Input.is_action_pressed(player+'_jump'):
 			if not Input.is_action_pressed(player+'_down'):
+				jump_sound.play()
 				velocity.y = -jump_speed
 			else:
+				jump_down.play()
 				position.y += 2
 	else:
 		# different gravity while acending or falling

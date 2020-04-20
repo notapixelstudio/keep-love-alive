@@ -6,7 +6,7 @@ export var active = false setget set_active
 export var couple_chance = 0.2
 
 onready var timer = $Timer
-
+onready var collect_sound = $Collected
 func set_active(v):
 	active = v
 	visible = active
@@ -20,6 +20,7 @@ func _on_Todo_body_entered(body):
 	if active and body is Character and body.player == player:
 		emit_signal('checked', self)
 		timer.stop()
+		collect_sound.play()
 		set_active(false)
 		
 func activate(time_passed=20):
