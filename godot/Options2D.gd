@@ -23,7 +23,7 @@ func _on_Basic_pressed():
 	tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2(1,0), 0.5,Tween.TRANS_EXPO, Tween.EASE_IN)
 	tween.start()
 	yield(tween, "tween_all_completed")
-	get_tree().change_scene("res://World.tscn")
+	get_tree().change_scene("res://TutorialScreen.tscn")
 
 
 func _on_Quit_pressed():
