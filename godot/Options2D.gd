@@ -24,3 +24,7 @@ func _on_Basic_pressed():
 	tween.start()
 	yield(tween, "tween_all_completed")
 	get_tree().change_scene("res://World.tscn")
+
+
+func _on_Quit_pressed():
+	get_tree().quit()
