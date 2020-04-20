@@ -58,7 +58,7 @@ func _process(delta):
 		jump_time -= delta
 		if is_on_floor():
 			if jump_time<0:
-				velocity.y = -jump_speed*1.6
+				velocity.y = -jump_speed*1.8
 				jump_time = jump_wait_time + rand_range(1.2, 2.3)
 				jump_sound.play()
 			else:

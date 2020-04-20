@@ -9,3 +9,4 @@ func _on_Credits_pressed():
 
 func _on_Leaderboard_pressed():
 	get_tree().change_scene("res://Leaderboard.tscn")
+
