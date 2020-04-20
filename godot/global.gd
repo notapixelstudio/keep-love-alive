@@ -1,7 +1,7 @@
 extends Node
 
 const DEFAULT_PLAYERS = {
-	'p1': {'life': 100, 'love': 5, 'color': Color('ffcc00')},
+	'p1': {'life': 100, 'love': 50, 'color': Color('ffcc00')},
 	'p2': {'life': 100, 'love': 50, 'color': Color('00ccff')}
 }
 

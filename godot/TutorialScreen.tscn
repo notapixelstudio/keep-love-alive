@@ -1,23 +1,21 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Todo.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/main_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://Character.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/office.png" type="Texture" id=5]
 [ext_resource path="res://assets/house.png" type="Texture" id=6]
 [ext_resource path="res://assets/museum.png" type="Texture" id=7]
 [ext_resource path="res://Todo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Bar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/tutorial_arrows.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 24
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -38,8 +36,8 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 88.0
-margin_bottom = 165.0
+margin_top = 40.0
+margin_bottom = 117.0
 custom_fonts/font = SubResource( 1 )
 text = "How to play"
 align = 1
@@ -51,9 +49,9 @@ __meta__ = {
 
 [node name="Label4" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 192.0
+margin_top = 128.0
 margin_bottom = 221.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
 text = "Keyboard or Gamepad
 MOVE: arrow keys / WASD / d-pad / left stick
 JUMP: M / 2 / X / B"
@@ -64,38 +62,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 margin_left = 96.0
 margin_top = 528.0
 margin_right = -768.0
-margin_bottom = 672.0
-custom_fonts/font = SubResource( 2 )
+margin_bottom = 624.0
+grow_horizontal = 2
+size_flags_vertical = 4
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]STAY CLOSE TO EACH OTHER TO MAKE YOUR [color=#ff00cc]LOVE METER[/color] GROW[/center]"
 text = "STAY CLOSE TO EACH OTHER TO MAKE YOUR LOVE METER GROW"
-align = 1
-valign = 1
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label5" type="Label" parent="."]
+[node name="Label5" type="RichTextLabel" parent="."]
 anchor_right = 1.0
-margin_left = 752.0
+margin_left = 764.0
 margin_top = 528.0
-margin_right = -112.0
-margin_bottom = 672.0
-custom_fonts/font = SubResource( 2 )
-text = "REMEMBER TO CARE ABOUT YOUR OTHER BUSINESSES TOO, OR YOUR HEART WILL SHRINK!"
-align = 1
-valign = 1
-autowrap = true
+margin_right = -100.0
+margin_bottom = 640.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]REMEMBER TO CARE ABOUT YOUR OTHER BUSINESSES TOO, OR YOUR [color=#ff00cc]WHOLE HEART BAR[/color] WILL SHRINK![/center]"
+text = "REMEMBER TO CARE ABOUT YOUR OTHER BUSINESSES TOO, OR YOUR WHOLE HEART BAR WILL SHRINK!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Stuff" type="Node2D" parent="."]
-position = Vector2( 0, 96 )
+position = Vector2( 0, 64 )
 
 [node name="TileMap" type="TileMap" parent="Stuff"]
 tile_set = ExtResource( 3 )
@@ -105,10 +103,12 @@ tile_data = PoolIntArray( 65535, 0, 0, 80, 0, 0, 131071, 0, 0, 65616, 0, 0, 1966
 
 [node name="Character" parent="Stuff" instance=ExtResource( 4 )]
 position = Vector2( 352, 384 )
+paused = true
 
 [node name="Character2" parent="Stuff" instance=ExtResource( 4 )]
 position = Vector2( 256, 384 )
 player = "p2"
+paused = true
 
 [node name="building" type="Sprite" parent="Stuff"]
 modulate = Color( 0, 0.8, 1, 0.196078 )
@@ -133,11 +133,8 @@ position = Vector2( 1040, 288 )
 texture = ExtResource( 7 )
 centered = false
 
-[node name="Todo" type="Area2D" parent="Stuff" groups=[
-"todo",
-] instance=ExtResource( 8 )]
+[node name="Todo" parent="Stuff" instance=ExtResource( 8 )]
 position = Vector2( 1088, 368 )
-script = ExtResource( 2 )
 value = 8
 active = true
 
@@ -146,11 +143,8 @@ position = Vector2( 784, 384 )
 value = 8
 active = true
 
-[node name="Todo5" type="Area2D" parent="Stuff" groups=[
-"todo",
-] instance=ExtResource( 8 )]
+[node name="Todo5" parent="Stuff" instance=ExtResource( 8 )]
 position = Vector2( 1120, 368 )
-script = ExtResource( 2 )
 value = 8
 player = "p2"
 active = true
@@ -161,8 +155,27 @@ value = 8
 player = "p2"
 active = true
 
+[node name="Bar" parent="Stuff" instance=ExtResource( 9 )]
+modulate = Color( 1, 0, 0.8, 1 )
+position = Vector2( 576, -160 )
+auto_recolor = false
+auto_update = false
+
+[node name="LifeBar" parent="Stuff/Bar" index="0"]
+margin_right = 148.0
+value = 86.0
+
+[node name="LoveBar" parent="Stuff/Bar" index="1"]
+value = 5.0
+
+[node name="Heart" parent="Stuff/Bar" index="2"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="AnimationPlayer" parent="Stuff/Bar/Heart" index="0"]
+autoplay = ""
+
 [node name="Options2D" type="Node2D" parent="."]
-position = Vector2( 496, 704 )
+position = Vector2( 496, 720 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -182,10 +195,15 @@ __meta__ = {
 [node name="Start" type="Button" parent="Options2D/Options"]
 margin_right = 260.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 7 )
 text = "START"
 
 [node name="Tween" type="Tween" parent="Options2D"]
-[connection signal="body_entered" from="Stuff/Todo" to="Stuff/Todo" method="_on_Todo_body_entered"]
-[connection signal="body_entered" from="Stuff/Todo5" to="Stuff/Todo5" method="_on_Todo_body_entered"]
+
+[node name="tutorial_arrows" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0.8, 1 )
+position = Vector2( 633, 549 )
+texture = ExtResource( 10 )
 [connection signal="pressed" from="Options2D/Options/Start" to="Options2D" method="_on_Retry_pressed"]
+
+[editable path="Stuff/Bar"]

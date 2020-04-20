@@ -1,16 +1,31 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/heart.png" type="Texture" id=1]
 [ext_resource path="res://Bar.gd" type="Script" id=2]
+[ext_resource path="res://assets/bar.png" type="Texture" id=3]
+[ext_resource path="res://assets/bar_full.png" type="Texture" id=4]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
+bg_color = Color( 0.054902, 0.054902, 0.054902, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 1, 1, 1, 1 )
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0784314, 0.0784314, 0.0784314, 0 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "pound"
@@ -34,10 +49,10 @@ script = ExtResource( 2 )
 [node name="LifeBar" type="ProgressBar" parent="."]
 margin_left = 32.0
 margin_top = 704.0
-margin_right = 702.0
+margin_right = 704.0
 margin_bottom = 736.0
 rect_rotation = -90.0
-custom_styles/fg = SubResource( 1 )
+custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
 percent_visible = false
@@ -48,11 +63,11 @@ __meta__ = {
 [node name="LoveBar" type="ProgressBar" parent="."]
 margin_left = 32.0
 margin_top = 704.0
-margin_right = 702.0
+margin_right = 704.0
 margin_bottom = 736.0
 rect_rotation = -90.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 2 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 6 )
 value = 50.0
 percent_visible = false
 __meta__ = {
