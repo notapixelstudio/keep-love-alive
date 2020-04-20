@@ -6,12 +6,15 @@ export var player = 'p1'
 export var speed = 400
 export var jump_speed = 600
 export var gravity = 1400
+export var paused = false
 
 var velocity = Vector2()
 
 func _ready():
 	$Sprite.modulate = global.players[player].color
 	$Light2D.color = global.players[player].color
+	set_process(not paused)
+	
 	
 func _process(delta):
 	var dir_x = int(Input.is_action_pressed(player+'_right'))-int(Input.is_action_pressed(player+'_left'))
