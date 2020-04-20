@@ -3,10 +3,13 @@ extends Node2D
 class_name TodoGroup
 
 export var probability = 1
+var todos = []
 
 func _ready():
 	for todo in get_children():
-		todo.connect('checked', self, '_on_Todo_checked')
+		if todo is Area2D:
+			todos.append(todo)
+			todo.connect('checked', self, '_on_Todo_checked')
 		
 signal checked
 func _on_Todo_checked(todo):
@@ -18,7 +21,7 @@ static func compare(a, b):
 	return false
 
 func activate(player):
-	for todo in get_children():
+	for todo in todos:
 		if todo.player == player and todo.couple_chance > 0:
 			todo.activate()
 		else:
