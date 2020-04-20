@@ -96,11 +96,11 @@ var hit_pos = []
 var laser_color = Color(1.0, .329, .298)
 var radius = 150
 
-
+"""
 # in order to raycast
 func _physics_process(delta):
 	update()
-
+"""
 
 func aim(lover = null, what = "lover")-> bool:
 	hit_pos = []

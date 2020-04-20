@@ -5,7 +5,7 @@ onready var score_label = $Score
 var score = 0
 
 func _ready():
-	visible = true
+	visible = false
 	
 	
 func start(time):
