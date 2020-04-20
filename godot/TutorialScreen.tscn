@@ -105,12 +105,10 @@ tile_data = PoolIntArray( 65535, 0, 0, 80, 0, 0, 131071, 0, 0, 65616, 0, 0, 1966
 
 [node name="Character" parent="Stuff" instance=ExtResource( 4 )]
 position = Vector2( 352, 384 )
-paused = true
 
 [node name="Character2" parent="Stuff" instance=ExtResource( 4 )]
 position = Vector2( 256, 384 )
 player = "p2"
-paused = true
 
 [node name="building" type="Sprite" parent="Stuff"]
 modulate = Color( 0, 0.8, 1, 0.196078 )
