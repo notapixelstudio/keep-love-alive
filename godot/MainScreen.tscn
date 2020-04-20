@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Options2D.gd" type="Script" id=2]
+[ext_resource path="res://Tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Character.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/heart.png" type="Texture" id=5]
+[ext_resource path="res://assets/house.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -25,7 +29,10 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
+color = Color( 0.101961, 0.101961, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
@@ -49,8 +56,43 @@ autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="Stuff" type="Node2D" parent="."]
+position = Vector2( 0, 16 )
+
+[node name="TileMap" type="TileMap" parent="Stuff"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 1638424, 0, 0, 1638425, 0, 0, 1638426, 0, 0, 1638427, 0, 0, 1638428, 0, 0, 1638429, 0, 0, 1638430, 0, 0, 1638431, 0, 0, 1638432, 0, 0, 1638433, 0, 0, 1638434, 0, 0, 1638435, 0, 0, 1638436, 0, 0, 1638437, 0, 0, 1638438, 0, 0, 1638439, 0, 0, 1638440, 0, 0, 1638441, 0, 0, 1638442, 0, 0, 1638443, 0, 0, 1638444, 0, 0, 1638445, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 1638448, 0, 0, 1638449, 0, 0, 1638450, 0, 0, 1638451, 0, 0, 1638452, 0, 0, 1638453, 0, 0 )
+
+[node name="Character" parent="Stuff" instance=ExtResource( 4 )]
+position = Vector2( 576, 384 )
+paused = true
+
+[node name="Character2" parent="Stuff" instance=ExtResource( 4 )]
+position = Vector2( 672, 384 )
+player = "p2"
+paused = true
+
+[node name="heart" type="Sprite" parent="Stuff"]
+modulate = Color( 1, 0.721569, 0.721569, 1 )
+position = Vector2( 624, 224 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 5 )
+
+[node name="house" type="Sprite" parent="Stuff"]
+modulate = Color( 1, 0.8, 0, 0.156863 )
+position = Vector2( 432, 352 )
+texture = ExtResource( 6 )
+
+[node name="house2" type="Sprite" parent="Stuff"]
+modulate = Color( 0, 0.8, 1, 0.156863 )
+position = Vector2( 816, 352 )
+texture = ExtResource( 6 )
+flip_h = true
+
 [node name="Options2D" type="Node2D" parent="."]
-position = Vector2( 493, 368 )
+position = Vector2( 493, 488 )
 script = ExtResource( 2 )
 
 [node name="Options" type="VBoxContainer" parent="Options2D"]
