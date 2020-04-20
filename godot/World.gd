@@ -78,8 +78,9 @@ func _process(delta):
 	
 func sec_to_min(seconds: float) -> String:
 	var m = int(floor(seconds/60))
-	# var s = int(floor(seconds))%60
-	var s = stepify(seconds,0.1)
+	var s = int(floor(seconds))%60
+	var ms = stepify(seconds,0.1) - int(seconds)
+	s = s + ms
 	var ss: String = "0"+str(s) if s < 10 else str(s)
 	if ss.find(".") < 0:
 		ss = ss+".0"
