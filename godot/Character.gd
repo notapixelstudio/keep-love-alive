@@ -26,9 +26,15 @@ var jump_wait_time = 1
 var wait_still = 4
 var change_still_dir = [-1, 1]
 var ind_change = 0
+
+func stop():
+	set_process(false)
+
+func start():
+	set_process(true)
+
 func _process(delta):
 	if cpu:
-		
 		var min_dist = 3000
 		for todo in get_tree().get_nodes_in_group("todo"):
 			
