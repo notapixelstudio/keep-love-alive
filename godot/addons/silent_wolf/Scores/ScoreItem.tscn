@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 2 )
+size = 38
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
@@ -44,3 +43,6 @@ custom_fonts/font = SubResource( 3 )
 text = "13"
 align = 2
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

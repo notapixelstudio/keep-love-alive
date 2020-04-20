@@ -1,5 +1,4 @@
-tool
-extends Node2D
+extends Control
 
 const ScoreItem = preload("ScoreItem.tscn")
 const SWLogger = preload("../utils/SWLogger.gd")
@@ -8,6 +7,20 @@ var list_index = 0
 var ld_name = "main"
 
 func _ready():
+	
+	SilentWolf.configure({
+		"api_key": "nhEiDdEK5E8PAowwDabV18piLmLK7oIgqOXiFn21",
+		"game_id": "keep-love-alive",
+		"game_version": "1.0.2",
+		"log_level": 1
+	})
+
+	SilentWolf.configure_scores({
+		"open_scene_on_close": "res://MainScreen.tscn"
+	})
+	
+	yield(get_tree().create_timer(1), "timeout")
+	yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
 	#var scores = SilentWolf.Scores.scores
 	var scores = SilentWolf.Scores.leaderboards[ld_name]
 	var local_scores = SilentWolf.Scores.local_scores
