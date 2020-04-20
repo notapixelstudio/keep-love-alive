@@ -7,10 +7,12 @@ const DEFAULT_PLAYERS = {
 
 onready var players = DEFAULT_PLAYERS.duplicate(true)
 onready var audio = AudioStreamPlayer.new()
+var in_game = false
 
 func play_menu():
-	audio.stream = load("res://assets/bgm/362814__setuniman__heartbroken-1n99.ogg")
-	audio.play()
+	if in_game or not audio.stream:
+		audio.stream = load("res://assets/bgm/362814__setuniman__heartbroken-1n99.ogg")
+		audio.play()
 	
 func _ready():
 	
@@ -28,6 +30,7 @@ func _ready():
 
 
 func new_game():
+	in_game = true
 	audio.stream = load("res://assets/bgm/403968__setuniman__childhood-1p63.wav")
 	audio.play()
 	players = DEFAULT_PLAYERS.duplicate(true)

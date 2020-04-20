@@ -40,7 +40,8 @@ func _on_Timer_timeout():
 			game_over()
 			
 	update_bars()
-	
+
+
 func game_over():
 	timer_label.visible = false
 	$Timer.stop()

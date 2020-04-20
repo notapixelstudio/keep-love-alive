@@ -3,7 +3,6 @@ extends Control
 onready var anim = $AnimationPlayer
 
 func _ready():
-	yield(get_tree().create_timer(2), "timeout")
 	anim.play("Appears")
 	
 func _input(event):
