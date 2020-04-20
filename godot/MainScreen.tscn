@@ -109,27 +109,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Retry" type="Button" parent="Options2D/Options"]
+[node name="Start" type="Button" parent="Options2D/Options"]
 margin_right = 260.0
 margin_bottom = 45.0
 custom_fonts/font = SubResource( 3 )
 text = "START"
 
-[node name="Retry2" type="Button" parent="Options2D/Options"]
+[node name="Options" type="Button" parent="Options2D/Options"]
 margin_top = 49.0
 margin_right = 260.0
 margin_bottom = 94.0
 custom_fonts/font = SubResource( 3 )
 text = "OPTIONS"
 
-[node name="Retry3" type="Button" parent="Options2D/Options"]
+[node name="Credits" type="Button" parent="Options2D/Options"]
 margin_top = 98.0
 margin_right = 260.0
 margin_bottom = 143.0
 custom_fonts/font = SubResource( 3 )
 text = "CREDITS"
 
-[node name="Retry4" type="Button" parent="Options2D/Options"]
+[node name="Quit" type="Button" parent="Options2D/Options"]
 margin_top = 147.0
 margin_right = 260.0
 margin_bottom = 192.0
@@ -185,5 +185,6 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="Options2D"]
-[connection signal="pressed" from="Options2D/Options/Retry" to="Options2D" method="_on_Retry_pressed"]
+[connection signal="pressed" from="Options2D/Options/Start" to="Options2D" method="_on_Retry_pressed"]
+[connection signal="pressed" from="Options2D/Options/Quit" to="Options2D" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Options2D/Second/Basic" to="Options2D" method="_on_Basic_pressed"]
