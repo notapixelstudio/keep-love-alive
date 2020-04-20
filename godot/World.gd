@@ -9,6 +9,8 @@ var time: float = 0.0
 onready var timer_label = $CanvasLayer/TimerLabel
 
 func _ready():
+	if global.ai_love:
+		$Character_p2.cpu = true
 	randomize()
 	global.new_game()
 	

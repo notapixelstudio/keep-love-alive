@@ -8,6 +8,7 @@ const DEFAULT_PLAYERS = {
 onready var players = DEFAULT_PLAYERS.duplicate(true)
 onready var audio = AudioStreamPlayer.new()
 var in_game = false
+var ai_love: bool = false
 
 func play_menu():
 	if in_game or not audio.stream:
