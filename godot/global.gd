@@ -1,18 +1,20 @@
 extends Node
 
 const DEFAULT_PLAYERS = {
-	'p1': {'life': 100, 'love': 50, 'color': Color('ffcc00')},
+	'p1': {'life': 100, 'love': 5, 'color': Color('ffcc00')},
 	'p2': {'life': 100, 'love': 50, 'color': Color('00ccff')}
 }
 
 onready var players = DEFAULT_PLAYERS.duplicate(true)
 onready var audio = AudioStreamPlayer.new()
 
+func play_menu():
+	audio.stream = load("res://assets/bgm/362814__setuniman__heartbroken-1n99.ogg")
+	audio.play()
+	
 func _ready():
 	
-	audio.stream = load("res://assets/bgm/362814__setuniman__heartbroken-1n99.ogg")
 	add_child(audio)
-	audio.play()
 	SilentWolf.configure({
 		"api_key": "nhEiDdEK5E8PAowwDabV18piLmLK7oIgqOXiFn21",
 		"game_id": "keep-love-alive",

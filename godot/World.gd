@@ -42,7 +42,11 @@ func _on_Timer_timeout():
 	update_bars()
 	
 func game_over():
+	timer_label.visible = false
 	$Timer.stop()
+	for lover in get_tree().get_nodes_in_group("lovers"):
+		lover.stop()
+	set_process(false)
 	gameover_screen.start(time)
 	
 func update_bars():

@@ -88,12 +88,6 @@ position = Vector2( 984.462, 592.193 )
 scale = Vector2( 0.311593, 0.311593 )
 texture = ExtResource( 13 )
 
-[node name="Bar_p1" parent="." instance=ExtResource( 4 )]
-
-[node name="Bar_p2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1184, 0 )
-player = "p2"
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource( 7 )]
@@ -110,6 +104,12 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Bar_p1" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="Bar_p2" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 1184, 0 )
+player = "p2"
 
 [node name="TodoContainer" type="Node2D" parent="."]
 
