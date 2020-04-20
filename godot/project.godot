@@ -28,7 +28,7 @@ _global_script_class_icons={
 
 config/name="Keep the Love Alive"
 run/main_scene="res://MainScreen.tscn"
-config/icon="res://assets/heart.png"
+config/icon="res://assets/logo.png"
 
 [autoload]
 
