@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Todo.gd" type="Script" id=2]
+[ext_resource path="res://Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://Character.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/office.png" type="Texture" id=5]
@@ -133,11 +133,8 @@ position = Vector2( 1040, 288 )
 texture = ExtResource( 7 )
 centered = false
 
-[node name="Todo" type="Area2D" parent="Stuff" groups=[
-"todo",
-] instance=ExtResource( 8 )]
+[node name="Todo" parent="Stuff" instance=ExtResource( 8 )]
 position = Vector2( 1088, 368 )
-script = ExtResource( 2 )
 value = 8
 active = true
 
@@ -146,11 +143,8 @@ position = Vector2( 784, 384 )
 value = 8
 active = true
 
-[node name="Todo5" type="Area2D" parent="Stuff" groups=[
-"todo",
-] instance=ExtResource( 8 )]
+[node name="Todo5" parent="Stuff" instance=ExtResource( 8 )]
 position = Vector2( 1120, 368 )
-script = ExtResource( 2 )
 value = 8
 player = "p2"
 active = true
@@ -186,6 +180,10 @@ custom_fonts/font = SubResource( 3 )
 text = "START"
 
 [node name="Tween" type="Tween" parent="Options2D"]
-[connection signal="body_entered" from="Stuff/Todo" to="Stuff/Todo" method="_on_Todo_body_entered"]
-[connection signal="body_entered" from="Stuff/Todo5" to="Stuff/Todo5" method="_on_Todo_body_entered"]
+
+[node name="Bar" parent="." instance=ExtResource( 2 )]
+
+[node name="Bar2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1184, 0 )
+player = "p2"
 [connection signal="pressed" from="Options2D/Options/Start" to="Options2D" method="_on_Retry_pressed"]
