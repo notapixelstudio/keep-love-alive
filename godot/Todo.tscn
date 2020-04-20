@@ -23,7 +23,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
-[node name="Todo" type="Area2D"]
+[node name="Todo" type="Area2D" groups=[
+"todo",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

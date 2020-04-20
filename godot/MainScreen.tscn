@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Options2D.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Character.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/heart.png" type="Texture" id=5]
 [ext_resource path="res://assets/house.png" type="Texture" id=6]
+[ext_resource path="res://MainScreen.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -22,6 +23,7 @@ font_data = ExtResource( 1 )
 [node name="MenuScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
