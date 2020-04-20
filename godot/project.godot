@@ -32,8 +32,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-global="*res://global.gd"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+global="*res://global.gd"
 
 [display]
 

@@ -6,30 +6,19 @@
 [ext_resource path="res://addons/silent_wolf/common/SWButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/silent_wolf/examples/CustomLeaderboards/TimeBasedLboards.gd" type="Script" id=5]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=1]
 size = 120
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 76
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=3]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-content_margin_left = 23.0
-content_margin_right = 23.0
-content_margin_top = 23.0
-content_margin_bottom = 23.0
-bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 23.0
@@ -47,13 +36,24 @@ content_margin_left = 23.0
 content_margin_right = 23.0
 content_margin_top = 23.0
 content_margin_bottom = 23.0
+bg_color = Color( 0.831373, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 23.0
+content_margin_right = 23.0
+content_margin_top = 23.0
+content_margin_bottom = 23.0
 bg_color = Color( 0.666667, 0.223529, 0.223529, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 64
 font_data = ExtResource( 2 )
 
@@ -75,7 +75,7 @@ margin_bottom = 135.0
 margin_left = 540.0
 margin_right = 1378.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 1 )
 text = "Leaderboard"
 
 [node name="Boards" type="HBoxContainer" parent="MainContainer"]
@@ -104,7 +104,7 @@ margin_left = 76.0
 margin_right = 456.0
 margin_bottom = 85.0
 size_flags_horizontal = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "This week"
 
 [node name="HighScores" type="CenterContainer" parent="MainContainer/Boards/Weekly"]
@@ -137,7 +137,7 @@ margin_bottom = 85.0
 margin_left = 44.0
 margin_right = 488.0
 margin_bottom = 85.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "This month"
 
 [node name="HighScores" type="CenterContainer" parent="MainContainer/Boards/Monthly"]
@@ -170,7 +170,7 @@ margin_bottom = 85.0
 margin_left = 121.0
 margin_right = 413.0
 margin_bottom = 85.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "All time"
 align = 1
 
@@ -195,10 +195,11 @@ margin_right = 3008.0
 margin_bottom = 265.0
 
 [node name="TextMessage" type="Label" parent="MainContainer/MessageContainer"]
-margin_left = 789.0
-margin_right = 1075.0
-margin_bottom = 37.0
-custom_fonts/font = SubResource( 2 )
+margin_left = 923.0
+margin_top = 17.0
+margin_right = 940.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 4 )
 text = "Loading scores..."
 valign = 1
 
@@ -221,9 +222,9 @@ __meta__ = {
 [node name="CloseButton" parent="MainContainer/CenterContainer/CloseButtonContainer" instance=ExtResource( 4 )]
 margin_right = 699.0
 margin_bottom = 118.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Close Leaderboard"
 [connection signal="pressed" from="MainContainer/CenterContainer/CloseButtonContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

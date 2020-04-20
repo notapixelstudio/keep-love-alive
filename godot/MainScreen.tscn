@@ -127,7 +127,7 @@ margin_top = 98.0
 margin_right = 260.0
 margin_bottom = 143.0
 custom_fonts/font = SubResource( 3 )
-text = "CREDITS"
+text = "LEADERBOARD"
 
 [node name="Quit" type="Button" parent="Options2D/Options"]
 margin_top = 147.0
@@ -186,5 +186,6 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Options2D"]
 [connection signal="pressed" from="Options2D/Options/Start" to="Options2D" method="_on_Retry_pressed"]
+[connection signal="pressed" from="Options2D/Options/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Options2D/Options/Quit" to="Options2D" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Options2D/Second/Basic" to="Options2D" method="_on_Basic_pressed"]

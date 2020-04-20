@@ -7,7 +7,6 @@ var todogroups_chances_max
 
 var time: float = 0.0
 onready var timer_label = $CanvasLayer/TimerLabel
-var timeformat = "{min}:{sec}"
 
 func _ready():
 	randomize()
@@ -44,7 +43,7 @@ func _on_Timer_timeout():
 	
 func game_over():
 	$Timer.stop()
-	gameover_screen.start()
+	gameover_screen.start(time)
 	
 func update_bars():
 	for p in ['p1','p2']:
@@ -75,7 +74,8 @@ func _on_SpawnTimer_timeout():
 func _process(delta):
 	time += delta
 	timer_label.text = sec_to_min(time)
-	
+
+var timeformat = "{min}:{sec}"
 func sec_to_min(seconds: float) -> String:
 	var m = int(floor(seconds/60))
 	var s = int(floor(seconds))%60
@@ -84,6 +84,5 @@ func sec_to_min(seconds: float) -> String:
 	var ss: String = "0"+str(s) if s < 10 else str(s)
 	if ss.find(".") < 0:
 		ss = ss+".0"
-	
 	return timeformat.format({"min": m, "sec": ss})
 	

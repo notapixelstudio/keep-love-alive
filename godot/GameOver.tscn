@@ -1,13 +1,38 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://GameOver.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/digital-dream/DIGITALDREAMFAT.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Blink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -22,22 +47,45 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
+color = Color( 0, 0, 0, 0.819608 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -193.5
-margin_top = -270.5
-margin_right = 193.5
-margin_bottom = -193.5
+margin_left = -249.5
+margin_top = -350.5
+margin_right = 260.5
+margin_bottom = -273.5
 custom_fonts/font = SubResource( 1 )
 text = "LOVE HURTS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Score" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -633.0
+margin_top = -270.0
+margin_right = 632.0
+margin_bottom = -193.0
+custom_fonts/font = SubResource( 1 )
+text = "0:00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Score"]
+autoplay = "Blink"
+anims/Blink = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -47,9 +95,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -125.5
-margin_top = -47.0
+margin_top = 201.0
 margin_right = 125.5
-margin_bottom = 47.0
+margin_bottom = 295.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,14 +105,46 @@ __meta__ = {
 [node name="Retry" type="Button" parent="VBoxContainer"]
 margin_right = 251.0
 margin_bottom = 45.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "TRY AGAIN"
 
 [node name="BackMenu" type="Button" parent="VBoxContainer"]
 margin_top = 49.0
 margin_right = 251.0
 margin_bottom = 94.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "BACK TO MENU"
+
+[node name="SendToLeaderboard" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 203.696
+margin_top = 130.998
+margin_right = -248.304
+margin_bottom = 175.998
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="TextEdit" parent="SendToLeaderboard"]
+margin_right = 300.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/font = SubResource( 4 )
+
+[node name="Padding" type="Control" parent="SendToLeaderboard"]
+margin_left = 304.0
+margin_right = 460.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="SendToLeaderboard"]
+margin_left = 464.0
+margin_right = 828.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 5 )
+text = "ADD TO LEADERBOARD"
 [connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackMenu" to="." method="_on_BackMenu_pressed"]
+[connection signal="pressed" from="SendToLeaderboard/Button" to="." method="_on_Button_pressed"]
