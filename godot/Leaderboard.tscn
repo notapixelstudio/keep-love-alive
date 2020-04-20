@@ -89,3 +89,4 @@ margin_right = 803.0
 margin_bottom = 57.0
 custom_fonts/font = SubResource( 4 )
 text = "BACK TO MENU"
+[connection signal="pressed" from="Board/CloseButtonContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
