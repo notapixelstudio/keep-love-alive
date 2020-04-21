@@ -17,6 +17,8 @@ func update():
 	$LifeBar.value = global.players[player].life
 	$LoveBar.value = global.players[player].love
 	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	if $LoveBar.value == 0:
 		$Heart.visible = false
 		$BrokenHeart.visible = true

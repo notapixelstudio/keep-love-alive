@@ -13,6 +13,7 @@ func _ready():
 		$Character_p2.cpu = true
 	randomize()
 	global.new_game()
+	update_bars()
 	
 	for todogroup in todogroups:
 		todogroup.connect('checked', self, '_on_Todo_checked')
