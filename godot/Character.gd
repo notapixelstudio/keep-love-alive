@@ -92,12 +92,11 @@ func _process(delta):
 			$Sprite/AnimationPlayer.play('squash')
 		
 		if Input.is_action_pressed(player+'_jump'):
-			if not Input.is_action_pressed(player+'_down'):
-				jump_sound.play()
-				velocity.y = -jump_speed
-			else:
-				jump_down.play()
-				position.y += 2
+			jump_sound.play()
+			velocity.y = -jump_speed
+		if Input.is_action_just_pressed(player+'_down') and is_on_floor():
+			jump_down.play()
+			position.y += 2
 	else:
 		# different gravity while acending or falling
 		if velocity.y < 0 and Input.is_action_pressed(player+'_jump'):
@@ -106,7 +105,8 @@ func _process(delta):
 			velocity.y += 2*gravity*delta
 			
 	velocity = move_and_slide(velocity, Vector2(0,-1))
-
+	
+	
 func is_cherised():
 	for area in $CheckCherised.get_overlapping_areas():
 		if area != $Circle and area.is_in_group('cherish'):
