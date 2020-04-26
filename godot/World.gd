@@ -29,9 +29,9 @@ func _ready():
 func _on_Timer_timeout():
 	for p in ['p1','p2']:
 		global.players[p].life -= 1
-		
-		if find_node('Character_'+p).is_cherised():
+		if int(global.players[p].time_together) >= 1:
 			global.players[p].love += 1
+			global.players[p].time_together -= int(global.players[p].time_together)
 		else:
 			global.players[p].love -= 1
 		
@@ -82,6 +82,12 @@ func _on_SpawnTimer_timeout():
 func _process(delta):
 	time += delta
 	timer_label.text = sec_to_min(time)
+	for p in ['p1','p2']:
+		if find_node('Character_'+p).is_cherised():
+			global.players[p].time_together += delta
+		
+		
+	
 
 var timeformat = "{min}:{sec}"
 func sec_to_min(seconds: float) -> String:
