@@ -101,10 +101,10 @@ func _process(delta):
 	else:
 		# different gravity while ascending or falling
 		if velocity.y < 0:
-			if Input.is_action_pressed(player+'_jump'):
+			if Input.is_action_pressed(player+'_jump') or not Input.is_action_just_released(player+"_jump"):
 				velocity.y += gravity*delta
-			if Input.is_action_just_released(player+"_jump"):
-				velocity.y = 0
+			elif Input.is_action_just_released(player+"_jump"):
+				velocity.y *= 0.5
 		else:
 			velocity.y += 2*gravity*delta
 			
