@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/36280__johnnypanic__plucked1.wav-fc14795c55167670199dd875bdf8813d.sample"
+type="AudioStreamWAV"
+uid="uid://7vncvtt1cue5"
+path="res://.godot/imported/36280__johnnypanic__plucked1.wav-fc14795c55167670199dd875bdf8813d.sample"
 
 [deps]
 
 source_file="res://assets/bgm/36280__johnnypanic__plucked1.wav"
-dest_files=[ "res://.import/36280__johnnypanic__plucked1.wav-fc14795c55167670199dd875bdf8813d.sample" ]
+dest_files=["res://.godot/imported/36280__johnnypanic__plucked1.wav-fc14795c55167670199dd875bdf8813d.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

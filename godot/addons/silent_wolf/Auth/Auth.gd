@@ -47,13 +47,13 @@ func register_player(player_name, email, password, confirm_password):
 	if OS.get_name() != "HTML5":
 		RegisterPlayer.set_use_threads(true)
 	get_tree().get_root().add_child(RegisterPlayer)
-	RegisterPlayer.connect("request_completed", self, "_on_RegisterPlayer_request_completed")
+	RegisterPlayer.connect("request_completed", Callable(self, "_on_RegisterPlayer_request_completed"))
 	SWLogger.info("Calling SilentWolf to register a player")
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
 	var api_key = SilentWolf.config.api_key
 	var payload = { "game_id": game_id, "player_name": player_name, "email":  email, "password": password, "confirm_password": confirm_password }
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	#print("register_player headers: " + str(headers))
 	RegisterPlayer.request("https://api.silentwolf.com/create_new_player", headers, true, HTTPClient.METHOD_POST, query)
@@ -66,13 +66,13 @@ func verify_email(player_name, code):
 	if OS.get_name() != "HTML5":
 		VerifyEmail.set_use_threads(true)
 	get_tree().get_root().add_child(VerifyEmail)
-	VerifyEmail.connect("request_completed", self, "_on_VerifyEmail_request_completed")
+	VerifyEmail.connect("request_completed", Callable(self, "_on_VerifyEmail_request_completed"))
 	SWLogger.info("Calling SilentWolf to verify email address for: " + str(player_name))
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
 	var api_key = SilentWolf.config.api_key
 	var payload = { "game_id": game_id, "username":  player_name, "code": code }
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	#print("register_player headers: " + str(headers))
 	VerifyEmail.request("https://api.silentwolf.com/confirm_verif_code", headers, true, HTTPClient.METHOD_POST, query)
@@ -84,13 +84,13 @@ func resend_conf_code(player_name):
 	if OS.get_name() != "HTML5":
 		ResendConfCode.set_use_threads(true)
 	get_tree().get_root().add_child(ResendConfCode)
-	ResendConfCode.connect("request_completed", self, "_on_ResendConfCode_request_completed")
+	ResendConfCode.connect("request_completed", Callable(self, "_on_ResendConfCode_request_completed"))
 	SWLogger.info("Calling SilentWolf to resend confirmation code for: " + str(player_name))
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
 	var api_key = SilentWolf.config.api_key
 	var payload = { "game_id": game_id, "username": player_name }
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	#print("register_player headers: " + str(headers))
 	ResendConfCode.request("https://api.silentwolf.com/resend_conf_code", headers, true, HTTPClient.METHOD_POST, query)
@@ -105,7 +105,7 @@ func login_player(username, password, remember_me=false):
 		LoginPlayer.set_use_threads(true)
 	print("get_tree().get_root(): " + str(get_tree().get_root()))
 	get_tree().get_root().add_child(LoginPlayer)
-	LoginPlayer.connect("request_completed", self, "_on_LoginPlayer_request_completed")
+	LoginPlayer.connect("request_completed", Callable(self, "_on_LoginPlayer_request_completed"))
 	SWLogger.info("Calling SilentWolf to log in a player")
 	var game_id = SilentWolf.config.game_id
 	var api_key = SilentWolf.config.api_key
@@ -113,7 +113,7 @@ func login_player(username, password, remember_me=false):
 	if SilentWolf.auth_config.has("saved_session_expiration_days") and typeof(SilentWolf.auth_config.saved_session_expiration_days) == 2:
 		payload["remember_me_expires_in"] = str(SilentWolf.auth_config.saved_session_expiration_days)
 	SWLogger.debug("SilentWolf login player payload: " + str(payload))
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	#print("login_player headers: " + str(headers))
 	LoginPlayer.request("https://api.silentwolf.com/login_player", headers, true, HTTPClient.METHOD_POST, query)
@@ -148,7 +148,9 @@ func _on_LoginPlayer_request_completed( result, response_code, headers, body ):
 	#SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/leaderboard")
@@ -180,7 +182,9 @@ func _on_RegisterPlayer_request_completed( result, response_code, headers, body 
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		SWLogger.debug("reponse: " + str(response))
 		if "message" in response.keys() and response.message == "Forbidden":
@@ -211,7 +215,9 @@ func _on_VerifyEmail_request_completed( result, response_code, headers, body ):
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		SWLogger.debug("reponse: " + str(response))
 		if "message" in response.keys() and response.message == "Forbidden":
@@ -236,7 +242,9 @@ func _on_ResendConfCode_request_completed( result, response_code, headers, body 
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		SWLogger.debug("reponse: " + str(response))
 		if "message" in response.keys() and response.message == "Forbidden":
@@ -255,7 +263,7 @@ func setup_login_timer():
 	login_timer = Timer.new()
 	login_timer.set_one_shot(true)
 	login_timer.set_wait_time(login_timeout)
-	login_timer.connect("timeout", self, "on_login_timeout_complete")
+	login_timer.connect("timeout", Callable(self, "on_login_timeout_complete"))
 	add_child(login_timer)
 
 func on_login_timeout_complete():
@@ -270,7 +278,7 @@ func save_session(lookup, validator):
 		"validator": validator
 	}
 	SWLogger.debug("Saving SilentWolf session: " + str(session_data))
-	session.store_line(to_json(session_data))
+	session.store_line(JSON.new().stringify(session_data))
 	session.close()
 	
 func remove_stored_session():
@@ -278,7 +286,7 @@ func remove_stored_session():
 	session.open("user://swsession.save", File.WRITE)
 	var session_data = {}
 	SWLogger.debug("Removing SilentWolf session if any: " + str(session_data))
-	session.store_line(to_json(session_data))
+	session.store_line(JSON.new().stringify(session_data))
 	session.close()
 	
 # reload lookup and validator and send them back to the server to auto-login user
@@ -288,7 +296,9 @@ func load_session():
 	if session.file_exists("user://swsession.save"):
 		SWLogger.debug("Found SilentWolf session.")
 		session.open("user://swsession.save", File.READ)
-		var data = parse_json(session.get_as_text())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(session.get_as_text())
+		var data = test_json_conv.get_data()
 		SWLogger.debug("SilentWolf session data: " + str(data))
 		# should we make sure to always process the following line?
 		if typeof(data) == TYPE_DICTIONARY and "lookup" in data:
@@ -328,13 +338,13 @@ func validate_player_session(lookup, validator, scene=get_tree().get_current_sce
 	if OS.get_name() != "HTML5":
 		ValidateSession.set_use_threads(true)
 	scene.add_child(ValidateSession)
-	ValidateSession.connect("request_completed", self, "_on_ValidateSession_request_completed")
+	ValidateSession.connect("request_completed", Callable(self, "_on_ValidateSession_request_completed"))
 	SWLogger.info("Calling SilentWolf to validate an existing player session")
 	var game_id = SilentWolf.config.game_id
 	var api_key = SilentWolf.config.api_key
 	var payload = { "game_id": game_id, "lookup": lookup, "validator": validator }
 	SWLogger.debug("Validate session payload: " + str(payload))
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	ValidateSession.request("https://api.silentwolf.com/validate_remember_me", headers, true, HTTPClient.METHOD_POST, query)
 	return self
@@ -349,7 +359,9 @@ func _on_ValidateSession_request_completed( result, response_code, headers, body
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		SWLogger.debug("reponse: " + str(response))
 		if "message" in response.keys() and response.message == "Forbidden":
@@ -366,5 +378,5 @@ func setup_complete_session_check_wait_timer():
 	complete_session_check_wait_timer = Timer.new()
 	complete_session_check_wait_timer.set_one_shot(true)
 	complete_session_check_wait_timer.set_wait_time(0.01)
-	complete_session_check_wait_timer.connect("timeout", self, "complete_session_check")
+	complete_session_check_wait_timer.connect("timeout", Callable(self, "complete_session_check"))
 	add_child(complete_session_check_wait_timer)

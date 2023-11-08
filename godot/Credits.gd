@@ -1,6 +1,6 @@
 extends Control
 
-onready var anim = $AnimationPlayer
+@onready var anim = $AnimationPlayer
 
 func _ready():
 	anim.play("Appears")
@@ -13,4 +13,4 @@ func _input(event):
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://MainScreen.tscn")
+	get_tree().change_scene_to_file("res://MainScreen.tscn")

@@ -2,14 +2,14 @@ extends Node2D
 
 class_name TodoGroup
 
-export var probability = 1
+@export var probability = 1
 var todos = []
 
 func _ready():
 	for todo in get_children():
 		if todo is Area2D:
 			todos.append(todo)
-			todo.connect('checked', self, '_on_Todo_checked')
+			todo.connect('checked', Callable(self, '_on_Todo_checked'))
 		
 signal checked
 func _on_Todo_checked(todo):

@@ -1,24 +1,24 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name Character
 
-export var player = 'p1'
-export var speed = 400
-export var jump_speed = 600
-export var gravity = 1400
-export var paused = false
-export var cpu : bool = false
+@export var player = 'p1'
+@export var speed = 400
+@export var jump_speed = 600
+@export var gravity = 1400
+@export var paused = false
+@export var cpu : bool = false
 
-onready var jump_sound = $audiojump
-onready var jump_down = $audiodown
+@onready var jump_sound = $audiojump
+@onready var jump_down = $audiodown
 var velocity = Vector2()
 
 var was_on_floor = true
 
 
 func _ready():
-	$Sprite.modulate = global.players[player].color
-	$Light2D.color = global.players[player].color
+	$Sprite2D.modulate = global.players[player].color
+	$PointLight2D.color = global.players[player].color
 	set_process(not paused)
 	
 var target = null
@@ -51,7 +51,7 @@ func _process(delta):
 			wait_still -= delta
 			if wait_still <= 0:
 				ind_change = (ind_change+1)%len(change_still_dir)
-				wait_still = default_wait_time + rand_range(1.2, 3.3)
+				wait_still = default_wait_time + randf_range(1.2, 3.3)
 			velocity.x = speed*change_still_dir[ind_change]
 		else:
 			velocity.x = speed*dir_x
@@ -61,10 +61,10 @@ func _process(delta):
 		if is_on_floor():
 			if jump_time<0:
 				velocity.y = -jump_speed*1.8
-				jump_time = jump_wait_time + rand_range(1.2, 2.3)
+				jump_time = jump_wait_time + randf_range(1.2, 2.3)
 				jump_sound.play()
 			else:
-				var tile_pos = get_parent().get_node("SolidTiles").world_to_map(position)
+				var tile_pos = get_parent().get_node("SolidTiles").local_to_map(position)
 				var tile_id = get_parent().get_node("SolidTiles").get_cellv(Vector2(tile_pos.x, tile_pos.y+1))
 				if tile_id == 1:
 					jump_down.play()
@@ -75,7 +75,10 @@ func _process(delta):
 			# different gravity while acending or falling
 			velocity.y += 2*gravity*delta
 		
-		velocity = move_and_slide(velocity, Vector2(0,-1))
+		set_velocity(velocity)
+		set_up_direction(Vector2(0,-1))
+		move_and_slide()
+		velocity = velocity
 		
 		return
 		
@@ -84,12 +87,12 @@ func _process(delta):
 	
 	if velocity.y != 0 and was_on_floor:
 		was_on_floor = false
-		$Sprite/AnimationPlayer.play('jump')
+		$Sprite2D/AnimationPlayer.play('jump')
 		
 	if is_on_floor():
 		if not was_on_floor:
 			was_on_floor = true
-			$Sprite/AnimationPlayer.play('squash')
+			$Sprite2D/AnimationPlayer.play('squash')
 		
 		if Input.is_action_pressed(player+'_jump'):
 			if not Input.is_action_pressed(player+'_down'):
@@ -105,7 +108,10 @@ func _process(delta):
 		else:
 			velocity.y += 2*gravity*delta
 			
-	velocity = move_and_slide(velocity, Vector2(0,-1))
+	set_velocity(velocity)
+	set_up_direction(Vector2(0,-1))
+	move_and_slide()
+	velocity = velocity
 
 func is_cherised():
 	for area in $CheckCherised.get_overlapping_areas():
@@ -129,7 +135,7 @@ func aim(lover = null, what = "lover")-> bool:
 	var space_state = get_world_2d().direct_space_state
 
 	var target = self if not lover else lover
-	var target_extents = target.get_node('CollisionShape2D').shape.extents - Vector2(5, 5)
+	var target_extents = target.get_node('CollisionShape2D').shape.size - Vector2(5, 5)
 	
 	var nw = target.global_position - target_extents
 	#var se = target.position + target_extents

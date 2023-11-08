@@ -5,17 +5,17 @@ const SWLogger = preload("../utils/SWLogger.gd")
 
 
 func _ready():
-	SilentWolf.Auth.connect("sw_email_verif_succeeded", self, "_on_confirmation_succeeded")
-	SilentWolf.Auth.connect("sw_email_verif_failed", self, "_on_confirmation_failed")
-	SilentWolf.Auth.connect("sw_resend_conf_code_succeeded", self, "_on_resend_code_succeeded")
-	SilentWolf.Auth.connect("sw_resend_conf_code_failed", self, "_on_resend_code_failed")
+	SilentWolf.Auth.connect("sw_email_verif_succeeded", Callable(self, "_on_confirmation_succeeded"))
+	SilentWolf.Auth.connect("sw_email_verif_failed", Callable(self, "_on_confirmation_failed"))
+	SilentWolf.Auth.connect("sw_resend_conf_code_succeeded", Callable(self, "_on_resend_code_succeeded"))
+	SilentWolf.Auth.connect("sw_resend_conf_code_failed", Callable(self, "_on_resend_code_failed"))
 
 	
 func _on_confirmation_succeeded():
 	SWLogger.info("email verification succeeded: " + str(SilentWolf.Auth.logged_in_player))
 	# redirect to configured scene (user is logged in after registration)
 	var scene_name = SilentWolf.auth_config.redirect_to_scene
-	get_tree().change_scene(scene_name)
+	get_tree().change_scene_to_file(scene_name)
 	
 	
 func _on_confirmation_failed(error):

@@ -1,197 +1,199 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://coat5g3wj4ajl"]
 
-[ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Options2D.gd" type="Script" id=2]
-[ext_resource path="res://Tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://Character.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/heart.png" type="Texture" id=5]
-[ext_resource path="res://assets/house.png" type="Texture" id=6]
-[ext_resource path="res://MainScreen.gd" type="Script" id=7]
+[ext_resource type="FontFile" uid="uid://glwosdlu46t2" path="res://assets/fonts/Antapani-ExtraBold.otf" id="1"]
+[ext_resource type="Script" path="res://Options2D.gd" id="2"]
+[ext_resource type="TileSet" path="res://Tileset.tres" id="3"]
+[ext_resource type="PackedScene" path="res://Character.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://khas6jiscn8k" path="res://assets/heart.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://brgx8i4v0wm0x" path="res://assets/house.png" id="6"]
+[ext_resource type="Script" path="res://MainScreen.gd" id="7"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=2]
-size = 24
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="MenuScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.101961, 0.101961, 0.101961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 anchor_right = 1.0
-margin_top = 88.0
-margin_bottom = 165.0
-custom_fonts/font = SubResource( 1 )
+offset_top = 88.0
+offset_bottom = 165.0
+theme_override_fonts/font = SubResource("1")
 text = "KEEP THE LOVE ALIVE*"
-align = 1
-valign = 1
 uppercase = true
 
 [node name="Label2" type="Label" parent="."]
+layout_mode = 0
 anchor_right = 1.0
-margin_top = 736.0
-margin_bottom = 765.0
-custom_fonts/font = SubResource( 2 )
+offset_top = 736.0
+offset_bottom = 765.0
+theme_override_fonts/font = SubResource("2")
 text = "*love and happiness not included, and actually not quantifiable"
-align = 1
-valign = 1
-autowrap = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Stuff" type="Node2D" parent="."]
-position = Vector2( 0, 16 )
+position = Vector2(0, 16)
 
 [node name="TileMap" type="TileMap" parent="Stuff"]
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 1638424, 0, 0, 1638425, 0, 0, 1638426, 0, 0, 1638427, 0, 0, 1638428, 0, 0, 1638429, 0, 0, 1638430, 0, 0, 1638431, 0, 0, 1638432, 0, 0, 1638433, 0, 0, 1638434, 0, 0, 1638435, 0, 0, 1638436, 0, 0, 1638437, 0, 0, 1638438, 0, 0, 1638439, 0, 0, 1638440, 0, 0, 1638441, 0, 0, 1638442, 0, 0, 1638443, 0, 0, 1638444, 0, 0, 1638445, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 1638448, 0, 0, 1638449, 0, 0, 1638450, 0, 0, 1638451, 0, 0, 1638452, 0, 0, 1638453, 0, 0 )
+tile_set = ExtResource("3")
+format = 2
+layer_0/tile_data = PackedInt32Array(1638424, 0, 0, 1638425, 0, 0, 1638426, 0, 0, 1638427, 0, 0, 1638428, 0, 0, 1638429, 0, 0, 1638430, 0, 0, 1638431, 0, 0, 1638432, 0, 0, 1638433, 0, 0, 1638434, 0, 0, 1638435, 0, 0, 1638436, 0, 0, 1638437, 0, 0, 1638438, 0, 0, 1638439, 0, 0, 1638440, 0, 0, 1638441, 0, 0, 1638442, 0, 0, 1638443, 0, 0, 1638444, 0, 0, 1638445, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 1638448, 0, 0, 1638449, 0, 0, 1638450, 0, 0, 1638451, 0, 0, 1638452, 0, 0, 1638453, 0, 0)
 
-[node name="Character" parent="Stuff" instance=ExtResource( 4 )]
-position = Vector2( 576, 384 )
+[node name="Character" parent="Stuff" instance=ExtResource("4")]
+position = Vector2(576, 384)
 paused = true
 
-[node name="Character2" parent="Stuff" instance=ExtResource( 4 )]
-position = Vector2( 672, 384 )
+[node name="Character2" parent="Stuff" instance=ExtResource("4")]
+position = Vector2(672, 384)
 player = "p2"
 paused = true
 
-[node name="heart" type="Sprite" parent="Stuff"]
-modulate = Color( 1, 0.721569, 0.721569, 1 )
-position = Vector2( 624, 224 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 5 )
+[node name="heart" type="Sprite2D" parent="Stuff"]
+modulate = Color(1, 0.721569, 0.721569, 1)
+position = Vector2(624, 224)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5")
 
-[node name="house" type="Sprite" parent="Stuff"]
-modulate = Color( 1, 0.8, 0, 0.156863 )
-position = Vector2( 432, 352 )
-texture = ExtResource( 6 )
+[node name="house" type="Sprite2D" parent="Stuff"]
+modulate = Color(1, 0.8, 0, 0.156863)
+position = Vector2(432, 352)
+texture = ExtResource("6")
 
-[node name="house2" type="Sprite" parent="Stuff"]
-modulate = Color( 0, 0.8, 1, 0.156863 )
-position = Vector2( 816, 352 )
-texture = ExtResource( 6 )
+[node name="house2" type="Sprite2D" parent="Stuff"]
+modulate = Color(0, 0.8, 1, 0.156863)
+position = Vector2(816, 352)
+texture = ExtResource("6")
 flip_h = true
 
 [node name="Options2D" type="Node2D" parent="."]
-position = Vector2( 493, 488 )
-script = ExtResource( 2 )
+position = Vector2(493, 488)
+script = ExtResource("2")
 
 [node name="Options" type="VBoxContainer" parent="Options2D"]
+clip_contents = true
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_right = 260.0
-margin_bottom = 192.0
-rect_clip_content = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_right = 260.0
+offset_bottom = 192.0
 
 [node name="Start" type="Button" parent="Options2D/Options"]
-margin_right = 260.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 3 )
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
 text = "START"
 
 [node name="Credits" type="Button" parent="Options2D/Options"]
-margin_top = 49.0
-margin_right = 260.0
-margin_bottom = 94.0
-custom_fonts/font = SubResource( 3 )
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
 text = "CREDITS"
 
 [node name="Leaderboard" type="Button" parent="Options2D/Options"]
-margin_top = 98.0
-margin_right = 260.0
-margin_bottom = 143.0
-custom_fonts/font = SubResource( 3 )
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
 text = "LEADERBOARD"
 
 [node name="Quit" type="Button" parent="Options2D/Options"]
-margin_top = 147.0
-margin_right = 260.0
-margin_bottom = 192.0
-custom_fonts/font = SubResource( 3 )
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
 text = "QUIT"
 
 [node name="Second" type="Node2D" parent="Options2D"]
 visible = false
 
 [node name="Basic" type="Button" parent="Options2D/Second"]
-margin_right = 260.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 3 )
+offset_right = 260.0
+offset_bottom = 45.0
+theme_override_fonts/font = SubResource("3")
 text = "2 LOVEBIRDS"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StretchOne" type="Button" parent="Options2D/Second"]
-margin_top = 49.0
-margin_right = 260.0
-margin_bottom = 94.0
-custom_fonts/font = SubResource( 3 )
+offset_top = 49.0
+offset_right = 260.0
+offset_bottom = 94.0
+theme_override_fonts/font = SubResource("3")
 text = "AI LOVE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="Options2D/Second"]
-margin_left = 280.0
-margin_top = 64.0
-margin_right = 580.0
-margin_bottom = 84.0
-custom_fonts/font = SubResource( 4 )
+offset_left = 280.0
+offset_top = 64.0
+offset_right = 580.0
+offset_bottom = 84.0
+theme_override_fonts/font = SubResource("4")
 text = "IF IN NEED OF A SYNTHETIC PARTNER"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StretchForever" type="Button" parent="Options2D/Second"]
-margin_top = 98.0
-margin_right = 260.0
-margin_bottom = 143.0
-custom_fonts/font = SubResource( 3 )
+offset_top = 98.0
+offset_right = 260.0
+offset_bottom = 143.0
+theme_override_fonts/font = SubResource("3")
 disabled = true
 text = "3+ POLYAMORY"
 
 [node name="Label2" type="Label" parent="Options2D/Second"]
-margin_left = 280.0
-margin_top = 112.0
-margin_right = 580.0
-margin_bottom = 132.0
-custom_fonts/font = SubResource( 4 )
+offset_left = 280.0
+offset_top = 112.0
+offset_right = 580.0
+offset_bottom = 132.0
+theme_override_fonts/font = SubResource("4")
 text = "WISH TO HAVE THE TIME TO MAKE IT WORK"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="Options2D"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+script = null
+
 [connection signal="pressed" from="Options2D/Options/Start" to="Options2D" method="_on_Retry_pressed"]
 [connection signal="pressed" from="Options2D/Options/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Options2D/Options/Leaderboard" to="." method="_on_Leaderboard_pressed"]

@@ -1,8 +1,8 @@
 extends Node2D
 
 
-export var radius = 150
-export var player = 'p1' setget set_player
+@export var radius = 150
+@export var player = 'p1': set = set_player
 
 func set_player(v):
 	player = v
@@ -22,6 +22,6 @@ func _ready():
 		points.append(Vector2(radius*cos(alpha), radius*sin(alpha)))
 		alpha += precision
 	
-	$Polygon2D.polygon = PoolVector2Array(points)
+	$Polygon2D.polygon = PackedVector2Array(points)
 	points.append(points[0])
-	$Line2D.points = PoolVector2Array(points)
+	$Line2D.points = PackedVector2Array(points)

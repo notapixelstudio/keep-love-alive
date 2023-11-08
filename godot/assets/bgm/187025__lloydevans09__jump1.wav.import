@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/187025__lloydevans09__jump1.wav-b25d65dd9e9edec6480da7f499d2a7d0.sample"
+type="AudioStreamWAV"
+uid="uid://5jplp1ik2x5r"
+path="res://.godot/imported/187025__lloydevans09__jump1.wav-b25d65dd9e9edec6480da7f499d2a7d0.sample"
 
 [deps]
 
 source_file="res://assets/bgm/187025__lloydevans09__jump1.wav"
-dest_files=[ "res://.import/187025__lloydevans09__jump1.wav-b25d65dd9e9edec6480da7f499d2a7d0.sample" ]
+dest_files=["res://.godot/imported/187025__lloydevans09__jump1.wav-b25d65dd9e9edec6480da7f499d2a7d0.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

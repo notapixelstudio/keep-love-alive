@@ -1,12 +1,12 @@
 extends Area2D
 
-export var value = 3
-export var player = 'p1'
-export var active = false setget set_active
-export var couple_chance = 0.2
+@export var value = 3
+@export var player = 'p1'
+@export var active = false: set = set_active
+@export var couple_chance = 0.2
 
-onready var timer = $Timer
-onready var collect_sound = $Collected
+@onready var timer = $Timer
+@onready var collect_sound = $Collected
 func set_active(v):
 	active = v
 	visible = active

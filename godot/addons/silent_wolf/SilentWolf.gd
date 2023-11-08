@@ -2,9 +2,9 @@ extends Node
 
 const version = "0.6.1"
 
-onready var Auth = Node.new()
-onready var Scores = Node.new()
-onready var Players = Node.new()
+@onready var Auth = Node.new()
+@onready var Scores = Node.new()
+@onready var Players = Node.new()
 
 #
 # SILENTWOLF CONFIG: THE CONFIG VARIABLES BELOW WILL BE OVERRIDED THE 

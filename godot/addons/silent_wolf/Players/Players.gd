@@ -57,7 +57,7 @@ func get_player_data(player_name):
 	if OS.get_name() != "HTML5":
 		GetPlayerData.set_use_threads(true)
 	get_tree().get_root().add_child(GetPlayerData)
-	GetPlayerData.connect("request_completed", self, "_on_GetPlayerData_request_completed")
+	GetPlayerData.connect("request_completed", Callable(self, "_on_GetPlayerData_request_completed"))
 	SWLogger.info("Calling SilentWolf to get player data")
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
@@ -72,14 +72,14 @@ func post_player_data(player_name, player_data, overwrite=true):
 	if OS.get_name() != "HTML5":
 		PushPlayerData.set_use_threads(true)
 	get_tree().get_root().add_child(PushPlayerData)
-	PushPlayerData.connect("request_completed", self, "_on_PushPlayerData_request_completed")
+	PushPlayerData.connect("request_completed", Callable(self, "_on_PushPlayerData_request_completed"))
 	SWLogger.info("Calling SilentWolf to post player data")
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
 	var api_key = SilentWolf.config.api_key
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	var payload = { "game_id": game_id, "game_version": game_version, "player_name": player_name, "player_data": player_data, "overwrite": overwrite }
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	PushPlayerData.request("https://api.silentwolf.com/push_player_data", headers, true, HTTPClient.METHOD_POST, query)
 	return self
 	
@@ -104,13 +104,13 @@ func delete_player_data(player_name, player_data):
 	if OS.get_name() != "HTML5":
 		RemovePlayerData.set_use_threads(true)
 	get_tree().get_root().add_child(RemovePlayerData)
-	RemovePlayerData.connect("request_completed", self, "_on_RemovePlayerData_request_completed")
+	RemovePlayerData.connect("request_completed", Callable(self, "_on_RemovePlayerData_request_completed"))
 	SWLogger.info("Calling SilentWolf to remove player data")
 	var game_id = SilentWolf.config.game_id
 	var api_key = SilentWolf.config.api_key
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	var payload = { "game_id": game_id, "player_name": player_name, "player_data": player_data }
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	RemovePlayerData.request("https://api.silentwolf.com/remove_player_data", headers, true, HTTPClient.METHOD_POST, query)
 	return self
 	
@@ -126,7 +126,9 @@ func _on_GetPlayerData_request_completed(result, response_code, headers, body):
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/playerdata")
@@ -148,7 +150,9 @@ func _on_PushPlayerData_request_completed(result, response_code, headers, body):
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/playerdata")
@@ -167,7 +171,9 @@ func _on_RemovePlayerData_request_completed(result, response_code, headers, body
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/playerdata")

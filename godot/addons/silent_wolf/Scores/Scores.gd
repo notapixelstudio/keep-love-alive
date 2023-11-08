@@ -70,7 +70,7 @@ func get_score_position(score, ldboard_name="main"):
 	if OS.get_name() != "HTML5":
 		ScorePosition.set_use_threads(true)
 	get_tree().get_root().add_child(ScorePosition)
-	ScorePosition.connect("request_completed", self, "_on_GetScorePosition_request_completed")
+	ScorePosition.connect("request_completed", Callable(self, "_on_GetScorePosition_request_completed"))
 	SWLogger.info("Calling SilentWolf to get score position")
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
@@ -80,7 +80,7 @@ func get_score_position(score, ldboard_name="main"):
 		payload["score_id"] = score_id
 	if score_value:
 		payload["score_value"] = score_value
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	ScorePosition.request("https://api.silentwolf.com/get_score_position", headers, true, HTTPClient.METHOD_POST, query)
 	return self
@@ -99,7 +99,7 @@ func get_scores_around(score, scores_to_fetch=3, ldboard_name="main"):
 	if OS.get_name() != "HTML5":
 		ScoresAround.set_use_threads(true)
 	get_tree().get_root().add_child(ScoresAround)
-	ScoresAround.connect("request_completed", self, "_on_ScoresAround_request_completed")
+	ScoresAround.connect("request_completed", Callable(self, "_on_ScoresAround_request_completed"))
 	SWLogger.info("Calling SilentWolf backend to scores above and below a certain score...")
 	# resetting the latest_number value in case the first requests times out, we need to request the same amount of top scores in the retry
 	#latest_max = maximum
@@ -120,7 +120,7 @@ func get_high_scores(maximum=10, ldboard_name="main", period_offset=0):
 	if OS.get_name() != "HTML5":
 		HighScores.set_use_threads(true)
 	get_tree().get_root().add_child(HighScores)
-	HighScores.connect("request_completed", self, "_on_GetHighScores_request_completed")
+	HighScores.connect("request_completed", Callable(self, "_on_GetHighScores_request_completed"))
 	SWLogger.info("Calling SilentWolf backend to get scores...")
 	# resetting the latest_number value in case the first requests times out, we need to request the same amount of top scores in the retry
 	latest_max = maximum
@@ -160,7 +160,7 @@ func persist_score(player_name, score, ldboard_name="main"):
 		if OS.get_name() != "HTML5":
 			PostScore.set_use_threads(true)
 		get_tree().get_root().add_child(PostScore)
-		PostScore.connect("request_completed", self, "_on_PostNewScore_request_completed")
+		PostScore.connect("request_completed", Callable(self, "_on_PostNewScore_request_completed"))
 		SWLogger.info("Calling SilentWolf backend to post new score...")
 		var game_id = SilentWolf.config.game_id
 		var game_version = SilentWolf.config.game_version
@@ -170,7 +170,7 @@ func persist_score(player_name, score, ldboard_name="main"):
 		var payload = { "score_id" : score_id, "player_name" : player_name, "game_id": game_id, "game_version": game_version, "score": score, "ldboard_name": ldboard_name }
 		# also add to local scores
 		add_to_local_scores(payload)
-		var query = JSON.print(payload)
+		var query = JSON.stringify(payload)
 		var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 		var use_ssl = true
 		PostScore.request("https://api.silentwolf.com/post_new_score", headers, use_ssl, HTTPClient.METHOD_POST, query)
@@ -184,13 +184,13 @@ func wipe_leaderboard(ldboard_name='main'):
 	if OS.get_name() != "HTML5":
 		WipeLeaderboard.set_use_threads(true)
 	get_tree().get_root().add_child(WipeLeaderboard)
-	WipeLeaderboard.connect("request_completed", self, "_on_WipeLeaderboard_request_completed")
+	WipeLeaderboard.connect("request_completed", Callable(self, "_on_WipeLeaderboard_request_completed"))
 	SWLogger.info("Calling SilentWolf backend to wipe leaderboard...")
 	var game_id = SilentWolf.config.game_id
 	var game_version = SilentWolf.config.game_version
 	var api_key = SilentWolf.config.api_key
 	var payload = { "game_id": game_id, "game_version": game_version, "ldboard_name": ldboard_name }
-	var query = JSON.print(payload)
+	var query = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json", "x-api-key: " + api_key]
 	var use_ssl = true
 	WipeLeaderboard.request("https://api.silentwolf.com/wipe_leaderboard", headers, use_ssl, HTTPClient.METHOD_POST, query)
@@ -207,7 +207,9 @@ func _on_GetHighScores_request_completed(result, response_code, headers, body):
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/leaderboard")
@@ -241,7 +243,9 @@ func _on_PostNewScore_request_completed(result, response_code, headers, body):
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/leaderboard")
@@ -264,7 +268,9 @@ func _on_GetScorePosition_request_completed(result, response_code, headers, body
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/leaderboard")
@@ -285,7 +291,9 @@ func _on_ScoresAround_request_completed(result, response_code, headers, body):
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/leaderboard")
@@ -315,7 +323,9 @@ func _on_WipeLeaderboard_request_completed(result, response_code, headers, body)
 	SWLogger.debug("response body: " + str(body.get_string_from_utf8()))
 	
 	if status_check:
-		var json = JSON.parse(body.get_string_from_utf8())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(body.get_string_from_utf8())
+		var json = test_json_conv.get_data()
 		var response = json.result
 		if "message" in response.keys() and response.message == "Forbidden":
 			SWLogger.error("You are not authorized to call the SilentWolf API - check your API key configuration: https://silentwolf.com/leaderboard")

@@ -1,5 +1,5 @@
 extends TextEdit
-export var LIMIT : int = 15
+@export var LIMIT : int = 15
 
 
 func _on_Name_text_changed():

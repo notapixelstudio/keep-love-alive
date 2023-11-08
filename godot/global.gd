@@ -5,8 +5,8 @@ const DEFAULT_PLAYERS = {
 	'p2': {'life': 100, 'last_checked':0.0, 'time_together': 0.0 , 'love': 50, 'color': Color('00ccff')}
 }
 
-onready var players = DEFAULT_PLAYERS.duplicate(true)
-onready var audio = AudioStreamPlayer.new()
+@onready var players = DEFAULT_PLAYERS.duplicate(true)
+@onready var audio = AudioStreamPlayer.new()
 var in_game = false
 var ai_love: bool = false
 
@@ -40,7 +40,7 @@ var timeformat = "{min}:{sec}"
 func sec_to_min(seconds: float, ms_bool = true) -> String:
 	var m = int(floor(seconds/60))
 	var s = int(floor(seconds))%60
-	var ms = stepify(seconds,0.1) - int(seconds)
+	var ms = snapped(seconds,0.1) - int(seconds)
 	if ms_bool:
 		s = s + ms
 	var ss: String = "0"+str(s) if s < 10 else str(s)

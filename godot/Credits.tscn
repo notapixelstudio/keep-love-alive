@@ -1,19 +1,19 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/img/600px-Godot_icon.svg.png" type="Texture" id=2]
-[ext_resource path="res://assets/img/5viow2pa4e8fjn83ain4.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Antapani-ExtraBold.otf" type="FontFile" id=1]
+[ext_resource path="res://assets/img/600px-Godot_icon.svg.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/img/5viow2pa4e8fjn83ain4.png" type="Texture2D" id=3]
 [ext_resource path="res://Credits.gd" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 24
 font_data = ExtResource( 1 )
 
@@ -27,8 +27,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 1.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0.1, 1.1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -39,8 +39,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.1, 2.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1.1, 2.1 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -51,8 +51,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2.1, 3.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 2.1, 3.1 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -63,13 +63,13 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 3.1, 4.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 3.1, 4.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -84,7 +84,7 @@ __meta__ = {
 [node name="TextureRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 996.349, 629.587 )
+pivot_offset = Vector2( 996.349, 629.587 )
 color = Color( 0.145098, 0.109804, 0.109804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,9 +92,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 48.0
-margin_bottom = 125.0
-custom_fonts/font = SubResource( 1 )
+offset_top = 48.0
+offset_bottom = 125.0
+theme_override_fonts/font = SubResource( 1 )
 text = "KEEP LOVE ALIVE"
 align = 1
 valign = 1
@@ -105,9 +105,9 @@ __meta__ = {
 [node name="Label2" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
-margin_top = 128.0
-margin_bottom = 205.0
-custom_fonts/font = SubResource( 2 )
+offset_top = 128.0
+offset_bottom = 205.0
+theme_override_fonts/font = SubResource( 2 )
 text = "made by notapixelstudio"
 align = 1
 valign = 1
@@ -118,9 +118,9 @@ __meta__ = {
 [node name="Label3" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
-margin_top = 208.0
-margin_bottom = 285.0
-custom_fonts/font = SubResource( 2 )
+offset_top = 208.0
+offset_bottom = 285.0
+theme_override_fonts/font = SubResource( 2 )
 text = "for LUDUM DARE 46"
 align = 1
 valign = 1
@@ -128,7 +128,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="5viow2pa4e8fjn83ain4" type="Sprite" parent="Label3"]
+[node name="5viow2pa4e8fjn83ain4" type="Sprite2D" parent="Label3"]
 position = Vector2( 1105.48, 481.948 )
 scale = Vector2( 0.318559, 0.318559 )
 texture = ExtResource( 3 )
@@ -136,9 +136,9 @@ texture = ExtResource( 3 )
 [node name="Label4" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
-margin_top = 288.0
-margin_bottom = 365.0
-custom_fonts/font = SubResource( 2 )
+offset_top = 288.0
+offset_bottom = 365.0
+theme_override_fonts/font = SubResource( 2 )
 text = "made with Godot Engine"
 align = 1
 valign = 1
@@ -146,7 +146,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="icon" type="Sprite" parent="Label4"]
+[node name="icon" type="Sprite2D" parent="Label4"]
 position = Vector2( 126.319, 400.486 )
 scale = Vector2( 0.28387, 0.28387 )
 texture = ExtResource( 2 )
@@ -154,9 +154,9 @@ texture = ExtResource( 2 )
 [node name="Label5" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
-margin_top = 352.0
-margin_bottom = 429.0
-custom_fonts/font = SubResource( 2 )
+offset_top = 352.0
+offset_bottom = 429.0
+theme_override_fonts/font = SubResource( 2 )
 text = "Thanks to : "
 align = 1
 valign = 1
@@ -165,84 +165,84 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Label5"]
-margin_left = 468.0
-margin_top = 63.0
-margin_right = 804.0
-margin_bottom = 343.0
+offset_left = 468.0
+offset_top = 63.0
+offset_right = 804.0
+offset_bottom = 343.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label6" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_right = 336.0
-margin_bottom = 36.0
+offset_right = 336.0
+offset_bottom = 36.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "Ram -  concept art"
+text = "Ram -  concept art"
 text = "Ram -  concept art"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label7" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_top = 40.0
-margin_right = 336.0
-margin_bottom = 76.0
+offset_top = 40.0
+offset_right = 336.0
+offset_bottom = 76.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[url=silentwolf.com]Silentwolf [/url] - Leaderboard"
+text = "[url=silentwolf.com]Silentwolf [/url] - Leaderboard"
 text = "Silentwolf  - Leaderboard"
 
 [node name="Label8" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_top = 80.0
-margin_right = 336.0
-margin_bottom = 116.0
+offset_top = 80.0
+offset_right = 336.0
+offset_bottom = 116.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[url=https://freesound.org/people/LloydEvans09/]LLoydevans09[/url] - SFX"
+text = "[url=https://freesound.org/people/LloydEvans09/]LLoydevans09[/url] - SFX"
 text = "LLoydevans09 - SFX"
 
 [node name="Label10" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_top = 120.0
-margin_right = 336.0
-margin_bottom = 156.0
+offset_top = 120.0
+offset_right = 336.0
+offset_bottom = 156.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[url=https://freesound.org/people/jalastram/]Jalastram[/url] - SFX"
+text = "[url=https://freesound.org/people/jalastram/]Jalastram[/url] - SFX"
 text = "Jalastram - SFX"
 
 [node name="Label12" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_top = 160.0
-margin_right = 336.0
-margin_bottom = 196.0
+offset_top = 160.0
+offset_right = 336.0
+offset_bottom = 196.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[url=https://freesound.org/people/johnnypanic/]johnnypanic[/url] - SFX"
+text = "[url=https://freesound.org/people/johnnypanic/]johnnypanic[/url] - SFX"
 text = "johnnypanic - SFX"
 
 [node name="Label9" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_top = 200.0
-margin_right = 336.0
-margin_bottom = 236.0
+offset_top = 200.0
+offset_right = 336.0
+offset_bottom = 236.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[url=https://freesound.org/people/Setuniman/]Setuniman [/url] - Music "
+text = "[url=https://freesound.org/people/Setuniman/]Setuniman [/url] - Music "
 text = "Setuniman  - Music "
 
 [node name="Label11" type="RichTextLabel" parent="Label5/VBoxContainer"]
-margin_top = 240.0
-margin_right = 336.0
-margin_bottom = 280.0
+offset_top = 240.0
+offset_right = 336.0
+offset_bottom = 280.0
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+theme_override_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[url=https://game-icons.net]Game-icons.net[/url] -"
+text = "[url=https://game-icons.net]Game-icons.net[/url] -"
 text = "Game-icons.net -"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -253,11 +253,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -80.0
-margin_right = 123.0
-margin_bottom = -35.0
-custom_fonts/font = SubResource( 5 )
+offset_left = -128.0
+offset_top = -80.0
+offset_right = 123.0
+offset_bottom = -35.0
+theme_override_fonts/font = SubResource( 5 )
 text = "BACK TO MENU"
 __meta__ = {
 "_edit_use_anchors_": false

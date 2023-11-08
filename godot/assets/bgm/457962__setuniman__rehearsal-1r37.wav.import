@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/457962__setuniman__rehearsal-1r37.wav-fd4833fd57c69a1aed9bbba3023b0f57.sample"
+type="AudioStreamWAV"
+uid="uid://dy13m3kkk2xax"
+path="res://.godot/imported/457962__setuniman__rehearsal-1r37.wav-fd4833fd57c69a1aed9bbba3023b0f57.sample"
 
 [deps]
 
 source_file="res://assets/bgm/457962__setuniman__rehearsal-1r37.wav"
-dest_files=[ "res://.import/457962__setuniman__rehearsal-1r37.wav-fd4833fd57c69a1aed9bbba3023b0f57.sample" ]
+dest_files=["res://.godot/imported/457962__setuniman__rehearsal-1r37.wav-fd4833fd57c69a1aed9bbba3023b0f57.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

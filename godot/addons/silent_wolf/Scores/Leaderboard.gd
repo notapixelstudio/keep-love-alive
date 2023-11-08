@@ -8,7 +8,7 @@ var ld_name = "main"
 
 func _ready():
 	
-	yield(get_tree().create_timer(0.3), "timeout")
+	await get_tree().create_timer(0.3).timeout
 	
 	var scores = SilentWolf.Scores.scores
 	#var scores = SilentWolf.Scores.leaderboards[ld_name]
@@ -19,7 +19,7 @@ func _ready():
 	else:
 		# use a signal to notify when the high scores have been returned, and show a "loading" animation until it's the case...
 		add_loading_scores_message()
-		yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
+		await SilentWolf.Scores.get_high_scores().sw_scores_received
 		hide_message()
 		render_board(SilentWolf.Scores.scores, local_scores)
 
@@ -46,7 +46,7 @@ func merge_scores_with_local_scores(scores, local_scores, max_scores=10):
 			var in_array = score_in_score_array(scores, score)
 			if !in_array:
 				scores.append(score)
-			scores.sort_custom(self, "sort_by_score");
+			scores.sort_custom(Callable(self, "sort_by_score"));
 	var return_scores = scores
 	if scores.size() > max_scores:
 		return_scores = scores.resize(max_scores)
@@ -70,24 +70,24 @@ func score_in_score_array(scores, new_score):
 	return in_score_array
 
 func add_item(player_name, score):
-	var item = ScoreItem.instance()
+	var item = ScoreItem.instantiate()
 	list_index += 1
 	item.get_node("Container/PlayerName").text = str(list_index) + str(". ") + player_name
 	item.get_node("Container/Score").text = global.sec_to_min(score, false)
-	item.margin_top = list_index * 100
+	item.offset_top = list_index * 100
 	$"Board/HighScores/ScoreItemContainer".add_child(item)
 
 func add_no_scores_message():
 	var item = $"Board/MessageContainer/TextMessage"
 	item.text = "No scores yet!"
 	$"Board/MessageContainer".show()
-	item.margin_top = 135
+	item.offset_top = 135
 	
 func add_loading_scores_message():
 	var item = $"Board/MessageContainer/TextMessage"
 	item.text = "Loading scores..."
 	$"Board/MessageContainer".show()
-	item.margin_top = 135
+	item.offset_top = 135
 	
 func hide_message():
 	$"Board/MessageContainer".hide()
@@ -96,4 +96,4 @@ func _on_CloseButton_pressed():
 	var scene_name = SilentWolf.scores_config.open_scene_on_close
 	SWLogger.info("Closing SilentWolf leaderboard, switching to scene: " + str(scene_name))
 	#global.reset()
-	get_tree().change_scene(scene_name)
+	get_tree().change_scene_to_file(scene_name)

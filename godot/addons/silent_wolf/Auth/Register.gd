@@ -4,8 +4,8 @@ const SWLogger = preload("../utils/SWLogger.gd")
 
 func _ready():
 	var auth_node = get_tree().get_root().get_node("res://addons/silent_wolf/Auth/Auth")
-	SilentWolf.Auth.connect("sw_registration_succeeded", self, "_on_registration_succeeded")
-	SilentWolf.Auth.connect("sw_registration_failed", self, "_on_registration_failed")
+	SilentWolf.Auth.connect("sw_registration_succeeded", Callable(self, "_on_registration_succeeded"))
+	SilentWolf.Auth.connect("sw_registration_failed", Callable(self, "_on_registration_failed"))
 	
 func _on_RegisterButton_pressed():
 	var player_name = $"FormContainer/MainFormContainer/FormInputFields/PlayerName".text
@@ -25,7 +25,7 @@ func _on_registration_succeeded():
 		scene_name = SilentWolf.auth_config.email_confirmation_scene
 	else:
 		SWLogger.info("registration succeeded, logged in player: " + str(SilentWolf.Auth.logged_in_player))
-	get_tree().change_scene(scene_name)
+	get_tree().change_scene_to_file(scene_name)
 	
 func _on_registration_failed(error):
 	hide_processing_label()
@@ -34,7 +34,7 @@ func _on_registration_failed(error):
 	$"FormContainer/ErrorMessage".show()
 
 func _on_BackButton_pressed():
-	get_tree().change_scene(SilentWolf.auth_config.redirect_to_scene)
+	get_tree().change_scene_to_file(SilentWolf.auth_config.redirect_to_scene)
 	
 func show_processing_label():
 	$"FormContainer/ProcessingLabel".show()

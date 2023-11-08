@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var tween = $Tween
+@onready var tween = $Tween
 
 
 
@@ -9,7 +9,7 @@ func _on_Retry_pressed():
 		return
 	tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2(1,0), 0.5,Tween.TRANS_EXPO, Tween.EASE_IN)
 	tween.start()
-	yield(tween, "tween_all_completed")
+	await tween.tween_all_completed
 	$Second.visible = true
 	tween.interpolate_property(self, "scale", Vector2(1, 0), Vector2(1,1), 0.5,Tween.TRANS_EXPO, Tween.EASE_IN)
 	tween.start()
@@ -22,9 +22,9 @@ func _on_Basic_pressed():
 		return
 	tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2(1,0), 0.5,Tween.TRANS_EXPO, Tween.EASE_IN)
 	tween.start()
-	yield(tween, "tween_all_completed")
+	await tween.tween_all_completed
 	global.ai_love = false
-	get_tree().change_scene("res://TutorialScreen.tscn")
+	get_tree().change_scene_to_file("res://TutorialScreen.tscn")
 
 
 func _on_Quit_pressed():
@@ -36,7 +36,7 @@ func _on_StretchOne_pressed():
 		return
 	tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2(1,0), 0.5,Tween.TRANS_EXPO, Tween.EASE_IN)
 	tween.start()
-	yield(tween, "tween_all_completed")
+	await tween.tween_all_completed
 	global.ai_love = true
-	get_tree().change_scene("res://TutorialScreen.tscn")
+	get_tree().change_scene_to_file("res://TutorialScreen.tscn")
 	

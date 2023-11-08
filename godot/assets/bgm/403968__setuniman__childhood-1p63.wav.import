@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/403968__setuniman__childhood-1p63.wav-775759c9c258acf5a4f5ff7b12daccb6.sample"
+type="AudioStreamWAV"
+uid="uid://dmb703essemjt"
+path="res://.godot/imported/403968__setuniman__childhood-1p63.wav-775759c9c258acf5a4f5ff7b12daccb6.sample"
 
 [deps]
 
 source_file="res://assets/bgm/403968__setuniman__childhood-1p63.wav"
-dest_files=[ "res://.import/403968__setuniman__childhood-1p63.wav-775759c9c258acf5a4f5ff7b12daccb6.sample" ]
+dest_files=["res://.godot/imported/403968__setuniman__childhood-1p63.wav-775759c9c258acf5a4f5ff7b12daccb6.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0
